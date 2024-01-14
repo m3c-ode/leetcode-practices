@@ -7,7 +7,7 @@ Return the maximum amount of water a container can store.
 
 Notice that you may not slant the container. */
 
-function maxArea(heights: number[]): number {
+export function maxArea(heights: number[]): number {
   let maxArea = 0;
   let i = 0;
   let j = heights.length - 1;
