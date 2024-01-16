@@ -33,6 +33,28 @@ export function threeSum(nums: number[]): number[][] {
 
 // Try with 2 pointers approach
 
+export function threeSumPointers(nums: number[]): number[][] {
+  // Check duplicates if nums[i] == nums[i-1], continue and similar with j, increment --> faster vs Set
+  let res: number[][] = [];
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length - 2; i++) {
+    // avoid duplicates
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
+    let [j, k] = [i + 1, nums.length - 1];
+    while (j < k) {
+      let sum = nums[i] + nums[j] + nums[k];
+      if (sum === 0) {
+        let triplet = [nums[i], nums[j], nums[k]];
+        res.push(triplet);
+        j++;
+        while (nums[j] === nums[j - 1] && j < k) j++;
+      } else if (sum < 0) j++;
+      else k--;
+    }
+  }
+  return res;
+}
+
 // function threeSum1(nums: number[]): number[][] {
 //     nums.sort((a,b) => a-b);
 //     let m: Map<number, number> = new Map<number, number>();
