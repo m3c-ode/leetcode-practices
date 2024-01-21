@@ -9,7 +9,7 @@ If target is not found in the array, return [-1, -1].
 
 You must write an algorithm with O(log n) runtime complexity. */
 
-function searchRange(nums: number[], target: number): number[] {
+export function searchRange(nums: number[], target: number): number[] {
   const res: number[] = [];
   if (nums.length === 0) return [-1, -1];
 
