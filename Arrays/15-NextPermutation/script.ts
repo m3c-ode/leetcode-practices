@@ -15,16 +15,22 @@ The replacement must be in place and use only constant extra memory. */
 // When we find the first element that is inferior to its successor at index I, it means the the following sub array is in a decreasing order.
 // We've reached to point where there needs to be a change.
 // we reverse the entire array from I OR we swap the extremities, then we need to order the array from I+1
-function nextPermutationMine(nums: number[]): void {
-  let swapperIndex = nums.length - 1;
+export function nextPermutation(nums: number[]): void {
+  if (nums.length <= 1) return;
   let i = nums.length - 2;
   while (i >= 0) {
     // As soon as we hit where the numbers aren't ascending
     if (nums[i] < nums[i + 1]) {
-      // swap the extremities, from this found Index with the end of the array
+      // swap with the next superior one from the right side (already in ascending order) with this found number
       let temp = nums[i];
-      nums[i] = nums[nums.length - 1];
-      nums[nums.length - 1] = temp;
+      for (let j = nums.length - 1; j > i; j--) {
+        const element = nums[j];
+        if (element <= temp) continue;
+        // next superior found, swap
+        nums[i] = nums[j];
+        nums[j] = temp;
+        break;
+      }
       break;
     } else {
       i--;
@@ -32,7 +38,42 @@ function nextPermutationMine(nums: number[]): void {
   }
   // Then we need to sort the part of the array that comes after this index.
   // Get the next part to re-order ascending, then sort it.
-  const sortedTail = nums.slice(i + 1).sort();
+  const sortedTail = nums.slice(i + 1).sort((a, b) => a - b);
   // put it in place in the array, from the following index, its length is the difference between the positions
   nums.splice(i + 1, nums.length - 1 - i, ...sortedTail);
+  console.log("Next permutation: ", nums);
+}
+
+nextPermutation([2, 3, 1]);
+nextPermutation([1, 3, 2]);
+nextPermutation([
+  11, 12, 0, 27, 3, 11, 21, 9, 0, 15, 26, 27, 17, 24, 0, 16, 4, 17, 14, 8, 15,
+  8, 2, 16, 10, 6, 6, 24, 16, 2, 18, 19, 6, 10, 17, 10, 21, 0, 11, 13, 7, 7, 2,
+  16, 24, 25, 2, 20, 12, 9, 20, 19,
+]);
+
+function nextPermutationManual(nums: number[]): void {
+  let i = nums.length - 2;
+  while (i >= 0 && nums[i] >= nums[i + 1]) {
+    i--;
+  }
+  if (i >= 0) {
+    let j = nums.length - 1;
+    while (j >= 0 && nums[j] <= nums[i]) {
+      j--;
+    }
+    let temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+  }
+  // Sort the right side manually
+  let left = i + 1;
+  let right = nums.length - 1;
+  while (left < right) {
+    let temp = nums[left];
+    nums[left] = nums[right];
+    nums[right] = temp;
+    left++;
+    right--;
+  }
 }
