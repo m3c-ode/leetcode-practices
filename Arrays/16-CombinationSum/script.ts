@@ -8,7 +8,10 @@ frequency
 The test cases are generated such that the number of unique combinations that sum up to target is less than 150 combinations for the given input.
 */
 // Backtracking will be used
-function combinationSum(candidates: number[], target: number): number[][] {
+export function combinationSum(
+  candidates: number[],
+  target: number
+): number[][] {
   if (target === 1) return [];
   let res: number[][] = [];
 
