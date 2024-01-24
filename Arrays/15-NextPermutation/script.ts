@@ -44,13 +44,13 @@ export function nextPermutation(nums: number[]): void {
   console.log("Next permutation: ", nums);
 }
 
-nextPermutation([2, 3, 1]);
-nextPermutation([1, 3, 2]);
-nextPermutation([
-  11, 12, 0, 27, 3, 11, 21, 9, 0, 15, 26, 27, 17, 24, 0, 16, 4, 17, 14, 8, 15,
-  8, 2, 16, 10, 6, 6, 24, 16, 2, 18, 19, 6, 10, 17, 10, 21, 0, 11, 13, 7, 7, 2,
-  16, 24, 25, 2, 20, 12, 9, 20, 19,
-]);
+// nextPermutation([2, 3, 1]);
+// nextPermutation([1, 3, 2]);
+// nextPermutation([
+//   11, 12, 0, 27, 3, 11, 21, 9, 0, 15, 26, 27, 17, 24, 0, 16, 4, 17, 14, 8, 15,
+//   8, 2, 16, 10, 6, 6, 24, 16, 2, 18, 19, 6, 10, 17, 10, 21, 0, 11, 13, 7, 7, 2,
+//   16, 24, 25, 2, 20, 12, 9, 20, 19,
+// ]);
 
 function nextPermutationManual(nums: number[]): void {
   let i = nums.length - 2;
